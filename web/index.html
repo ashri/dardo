@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Dardo</title>
+
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-content: center;
+            align-items: flex-start;
+            border: 1px solid yellow;
+        }
+
+        section {
+            width: 300px;
+            height: 250px;
+            flex-grow: < property unused > flex-shrink : < property unused > flex-basis : < property unused >
+        }
+
+        section, aside {
+            border: 1px solid pink;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Dardo</h1>
+</header>
+
+<div class="flex-container">
+    <section>
+        <p>Timer and description goes in here</p>
+    </section>
+</div>
+
+<div class="flex-container">
+    <aside class="">
+        <p>Historical sessions</p>
+    </aside>
+
+    <aside>
+        <div class="statistic">
+            <h2>Today</h2>
+
+        </div>
+        <div class="statistic-graph">
+            <embed src="line.svg?40,10,7,10,8,3,5,10,4,0,-3,-6,-4,2,7,8,10,14,10,8,9,7,3,0,0,4,7,10,8,12,5,10,4,0,-3,-6,-4,2,7,8,10,14,25,16,9,7,3,0&amp;current&amp;max" type="image/svg+xml"></embed>
+        </div>
+    </aside>
+</div>
+
+<footer>
+    <p>Footer</p>
+</footer>
+
+</body>
+</html>
