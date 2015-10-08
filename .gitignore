@@ -9,3 +9,4 @@ packages
 pubspec.lock
 .sass-cache
 web/styles/*.css
+web/styles/*.map
