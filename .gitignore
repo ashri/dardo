@@ -8,3 +8,4 @@ build/
 packages
 pubspec.lock
 .sass-cache
+web/styles/*.css
