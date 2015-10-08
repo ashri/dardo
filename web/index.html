@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -16,50 +15,81 @@
 
 <div class="hero">
     <section class="hero-inner">
-        <a href="" class="hero-logo"><img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo Image"></a>
+        <div class="hero-logo countdown">00:00</div>
+        <div class="hero-copy item">
+            <div class="input">
+                <div class="form-group">
+                    <input type="text" name="description" placeholder="Enter description">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="tags" placeholder="Enter tags (eg. mintrack, dardo, pigeon)">
+                </div>
+                <div class="controls">
+                    <button>25m</button>
+                    <button>5m</button>
+                    <button>15m</button>
+                </div>
+            </div>
 
-        <div class="hero-copy">
-            <h1>Short description of Product</h1>
-
-            <p>A few reasons why this product is worth using, who it's for and why they need it.</p>
+            <div class="display">
+                <h2>Building out interface elements</h2>
+                <ul class="item-tags">
+                    <li>dardo</li>
+                </ul>
+                <div class="controls">
+                    <button>Stop</button>
+                </div>
+            </div>
         </div>
     </section>
 </div>
 
 <div class="grid-items">
-    <div class="grid-item">
+    <div class="grid-item stats stats-today">
         <h2>Today</h2>
+
+        <div class="count">3</div>
         <embed src="line.svg?40,10,7,10,8,3,5,10,4,0,-3,-6,-4,2,7,8,10,14,10,8,9,7,3,0,0,4,7,10,8,12,5,10,4,0,-3,-6,-4,2,7,8,10,14,25,16,9,7,3,0&amp;current&amp;max" type="image/svg+xml"></embed>
     </div>
-    <div class="grid-item">
+    <div class="grid-item stats stats-week">
         <h2>Week</h2>
+
+        <div class="count">26</div>
         <embed src="line.svg?40,10,7,10,8,3,5,10,4,0,-3,-6,-4,2,7,8,10,14,10,8,9,7,3,0,0,4,7,10,8,12,5,10,4,0,-3,-6,-4,2,7,8,10,14,25,16,9,7,3,0&amp;current&amp;max" type="image/svg+xml"></embed>
     </div>
-    <div class="grid-item grid-item-big">
+    <div class="grid-item grid-item-big history">
         <h2>The Log</h2>
         <table class="table-minimal">
-            <thead>
-            <tr>
-                <th>Header Cell 1</th>
-                <th>Header Cell 2</th>
-            </tr>
-            </thead>
             <tbody>
             <tr>
-                <td>Row 1 Cell 1</td>
-                <td>Row 1 Cell 2</td>
+                <th colspan="2">Today <span class="count">(3 items)</span></th>
             </tr>
             <tr>
-                <td>Row 2 Cell 1</td>
-                <td>Row 2 Cell 2</td>
+                <td>Added Sass support</td>
+                <td>dardo</td>
             </tr>
             <tr>
-                <td>Row 3 Cell 1</td>
-                <td>Row 3 Cell 2</td>
+                <td>Blocked out interface</td>
+                <td>dardo</td>
             </tr>
             <tr>
-                <td>Row 4 Cell 1</td>
-                <td>Row 4 Cell 2</td>
+                <td>Added comments to additional route</td>
+                <td>mintrack</td>
+            </tr>
+            <tr>
+                <th colspan="2">Yesterday <span class="count">(6 items)</span></th>
+            </tr>
+            <tr>
+                <td>Added QA/Process to menu on active tasks</td>
+                <td>mintrack</td>
+            </tr>
+            <tr>
+                <td>Begun Dart project</td>
+                <td>dardo</td>
+            </tr>
+            <tr>
+                <td>Fixed comment route display on view ministerial screen</td>
+                <td>mintrack</td>
             </tr>
             </tbody>
         </table>
