@@ -5,27 +5,7 @@
     <meta charset="utf-8">
     <title>Dardo</title>
 
-    <style>
-        .flex-container {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-content: center;
-            align-items: flex-start;
-            border: 1px solid yellow;
-        }
-
-        section {
-            width: 300px;
-            height: 250px;
-            flex-grow: < property unused > flex-shrink : < property unused > flex-basis : < property unused >
-        }
-
-        section, aside {
-            border: 1px solid pink;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body>
@@ -34,31 +14,65 @@
     <h1>Dardo</h1>
 </header>
 
-<div class="flex-container">
-    <section>
-        <p>Timer and description goes in here</p>
+<div class="hero">
+    <section class="hero-inner">
+        <a href="" class="hero-logo"><img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo Image"></a>
+
+        <div class="hero-copy">
+            <h1>Short description of Product</h1>
+
+            <p>A few reasons why this product is worth using, who it's for and why they need it.</p>
+        </div>
     </section>
 </div>
 
-<div class="flex-container">
-    <aside class="">
-        <p>Historical sessions</p>
-    </aside>
-
-    <aside>
-        <div class="statistic">
-            <h2>Today</h2>
-
-        </div>
-        <div class="statistic-graph">
-            <embed src="line.svg?40,10,7,10,8,3,5,10,4,0,-3,-6,-4,2,7,8,10,14,10,8,9,7,3,0,0,4,7,10,8,12,5,10,4,0,-3,-6,-4,2,7,8,10,14,25,16,9,7,3,0&amp;current&amp;max" type="image/svg+xml"></embed>
-        </div>
-    </aside>
+<div class="grid-items">
+    <div class="grid-item">
+        <h2>Today</h2>
+        <embed src="line.svg?40,10,7,10,8,3,5,10,4,0,-3,-6,-4,2,7,8,10,14,10,8,9,7,3,0,0,4,7,10,8,12,5,10,4,0,-3,-6,-4,2,7,8,10,14,25,16,9,7,3,0&amp;current&amp;max" type="image/svg+xml"></embed>
+    </div>
+    <div class="grid-item">
+        <h2>Week</h2>
+        <embed src="line.svg?40,10,7,10,8,3,5,10,4,0,-3,-6,-4,2,7,8,10,14,10,8,9,7,3,0,0,4,7,10,8,12,5,10,4,0,-3,-6,-4,2,7,8,10,14,25,16,9,7,3,0&amp;current&amp;max" type="image/svg+xml"></embed>
+    </div>
+    <div class="grid-item grid-item-big">
+        <h2>The Log</h2>
+        <table class="table-minimal">
+            <thead>
+            <tr>
+                <th>Header Cell 1</th>
+                <th>Header Cell 2</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Row 1 Cell 1</td>
+                <td>Row 1 Cell 2</td>
+            </tr>
+            <tr>
+                <td>Row 2 Cell 1</td>
+                <td>Row 2 Cell 2</td>
+            </tr>
+            <tr>
+                <td>Row 3 Cell 1</td>
+                <td>Row 3 Cell 2</td>
+            </tr>
+            <tr>
+                <td>Row 4 Cell 1</td>
+                <td>Row 4 Cell 2</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
+
 
 <footer>
     <p>Footer</p>
 </footer>
+
+<script async type="application/dart" src="main.dart"></script>
+<script async src="packages/browser/dart.js"></script>
 
 </body>
 </html>

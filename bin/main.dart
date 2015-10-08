@@ -23,7 +23,7 @@ main() {
   Server.setShelfHandler(createStaticHandler(pathToWeb, defaultDocument: "index.html"));
 
   Server.setupConsoleLog();
-  Server.start();
+  Server.start(port: 9090);
 }
 
 @Server.Route("/user/id/:id")
