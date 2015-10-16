@@ -1,0 +1,28 @@
+$dardo-bg-color: #F05A4F;
+$dardo-color-light: #FFF;
+$dardo-color-mid: #C7C8C1;
+$dardo-color-dark: #3E4855;
+$dardo-color-oppose: #3CB852;
+
+$table-border-color: $dardo-color-mid;
+
+$panel-default-border: $dardo-color-mid;
+$panel-bg: $dardo-bg-color;
+
+$label-default-bg: lighten($dardo-bg-color, 10%);
+$label-color: lighten($dardo-bg-color, 25%);
+
+$headings-color: $dardo-color-mid;
+
+$input-color: $dardo-color-light;
+$input-color-placeholder: lighten($dardo-bg-color, 20%);
+$input-bg: $dardo-bg-color;
+$input-border: $dardo-color-mid;
+$input-border-focus: $dardo-color-light;
+
+$btn-default-bg: $dardo-color-dark;
+$btn-default-color: $dardo-color-light;
+$btn-default-border: $dardo-color-light;
+$btn-primary-bg: $dardo-color-oppose;
+$btn-primary-color: $dardo-color-light;
+$btn-primary-border: $dardo-color-light

@@ -1,0 +1,21 @@
+.timer {
+
+  .controls {
+    text-align: center;
+  }
+
+  .control-label {
+    @include header-style();
+    font-weight: normal;
+    color: $dardo-color-light;
+  }
+
+  .btn {
+    font-family: 'Montserrat', 'Helvetica', serif;
+
+    &.btn-primary {
+      text-transform: uppercase;
+    }
+  }
+
+}

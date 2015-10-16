@@ -1,0 +1,38 @@
+.stats {
+
+  .panel {
+    box-shadow: none;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-color: $dardo-color-dark;
+  }
+
+  .panel-heading {
+    background-color: inherit;
+    border: 0;
+    color: $dardo-color-dark;
+  }
+
+  .panel-body {
+    @include header-style();
+    color: $dardo-color-dark;
+    text-align: center;
+    padding: 0;
+  }
+
+  .panel-footer {
+    background-color: inherit;
+    border: 0;
+    text-align: center;
+    height: 50px;
+  }
+
+  .stats-day .panel-body {
+    font-size: 5em;
+  }
+  .stats-week .panel-body {
+    font-size: 3em;
+  }
+
+}
