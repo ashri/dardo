@@ -4,102 +4,160 @@
     <meta charset="utf-8">
     <title>Dardo</title>
 
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="resources/stylesheets/dardo.css">
 </head>
 
 <body>
+<div class="container">
 
-<header>
-    <h1>Dardo</h1>
-</header>
+    <header>
+        <h1>Dardo</h1>
+    </header>
 
-<div class="hero">
-    <section class="hero-inner">
-        <div class="hero-logo countdown">00:00</div>
-        <div class="hero-copy item">
-            <div class="input">
-                <div class="form-group">
-                    <input type="text" name="description" placeholder="Enter description">
+    <div class="row timer">
+        <div class="col-md-8 col-md-offset-2">
+            <form class="form-horizontal">
+                <div class="form-group form-group-lg">
+                    <label for="inputTask" class="col-sm-2 control-label">Task</label>
+
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputTask" placeholder="Task description" required autofocus>
+
+                        <p class="help-block"></p>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="tags" placeholder="Enter tags (eg. mintrack, dardo, pigeon)">
+                    <label for="inputTags" class="col-sm-2 control-label">Tags</label>
+
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="inputTags" placeholder="Tags seperated by spaces" required>
+
+                        <p class="help-block"></p>
+                    </div>
                 </div>
-                <div class="controls">
-                    <button>25m</button>
-                    <button>5m</button>
-                    <button>15m</button>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8 controls">
+                        <button type="button" class="btn btn-primary btn-lg btn-start">
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Start
+                        </button>
+                        <button type="button" class="btn btn-default btn-lg btn-pause-5">
+                            <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> 5m
+                        </button>
+                        <button type="button" class="btn btn-default btn-lg btn-pause-15">
+                            <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> 15m
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row timer">
+        <div class="col-md-6 stats">
+            <h2>Stats</h2>
+
+            <div class="row stats-day">
+                <div class="col-md-6 stats-current">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Today</h3>
+                        </div>
+                        <div class="panel-body">
+                            2
+                        </div>
+                        <div class="panel-footer">
+                            graph image
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 stats-average">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Daily Average</h3>
+                        </div>
+                        <div class="panel-body">
+                            6
+                        </div>
+                        <div class="panel-footer">
+                            graph image
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="display">
-                <h2>Building out interface elements</h2>
-                <ul class="item-tags">
-                    <li>dardo</li>
-                </ul>
-                <div class="controls">
-                    <button>Stop</button>
+            <div class="row stats-week">
+                <div class="col-md-6 stats-current">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">This Week</h3>
+                        </div>
+                        <div class="panel-body">
+                            10
+                        </div>
+                        <div class="panel-footer">
+                            graph image
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 stats-average">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Weekly Average</h3>
+                        </div>
+                        <div class="panel-body">
+                            30
+                        </div>
+                        <div class="panel-footer">
+                            graph image
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="col-md-6 history">
+            <h2>Recent</h2>
+
+            <table class="table table-condensed">
+                <tbody>
+                <tr>
+                    <th colspan="2">Today <span class="badge">3</span></th>
+                </tr>
+                <tr>
+                    <td>Added Sass support</td>
+                    <td><span class="label label-default">dardo</span></td>
+                </tr>
+                <tr>
+                    <td>Blocked out interface</td>
+                    <td><span class="label label-default">dardo</span></td>
+                </tr>
+                <tr>
+                    <td>Added comments to additional route</td>
+                    <td><span class="label label-default">mintrack</span></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Yesterday <span class="badge">6</span></th>
+                </tr>
+                <tr>
+                    <td>Added QA/Process to menu on active tasks</td>
+                    <td><span class="label label-default">mintrack</span></td>
+                </tr>
+                <tr>
+                    <td>Begun Dart project</td>
+                    <td><span class="label label-default">dardo</span></td>
+                </tr>
+                <tr>
+                    <td>Fixed comment route display on view ministerial screen</td>
+                    <td><span class="label label-default">mintrack</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <p>Footer</p>
+    </footer>
+
 </div>
-
-<div class="grid-items">
-    <div class="grid-item stats stats-today">
-        <h2>Today</h2>
-
-        <div class="count">3</div>
-        <embed src="line.svg?40,10,7,10,8,3,5,10,4,0,-3,-6,-4,2,7,8,10,14,10,8,9,7,3,0,0,4,7,10,8,12,5,10,4,0,-3,-6,-4,2,7,8,10,14,25,16,9,7,3,0&amp;current&amp;max" type="image/svg+xml"></embed>
-    </div>
-    <div class="grid-item stats stats-week">
-        <h2>Week</h2>
-
-        <div class="count">26</div>
-        <embed src="line.svg?40,10,7,10,8,3,5,10,4,0,-3,-6,-4,2,7,8,10,14,10,8,9,7,3,0,0,4,7,10,8,12,5,10,4,0,-3,-6,-4,2,7,8,10,14,25,16,9,7,3,0&amp;current&amp;max" type="image/svg+xml"></embed>
-    </div>
-    <div class="grid-item grid-item-big history">
-        <h2>The Log</h2>
-        <table class="table-minimal">
-            <tbody>
-            <tr>
-                <th colspan="2">Today <span class="count">(3 items)</span></th>
-            </tr>
-            <tr>
-                <td>Added Sass support</td>
-                <td>dardo</td>
-            </tr>
-            <tr>
-                <td>Blocked out interface</td>
-                <td>dardo</td>
-            </tr>
-            <tr>
-                <td>Added comments to additional route</td>
-                <td>mintrack</td>
-            </tr>
-            <tr>
-                <th colspan="2">Yesterday <span class="count">(6 items)</span></th>
-            </tr>
-            <tr>
-                <td>Added QA/Process to menu on active tasks</td>
-                <td>mintrack</td>
-            </tr>
-            <tr>
-                <td>Begun Dart project</td>
-                <td>dardo</td>
-            </tr>
-            <tr>
-                <td>Fixed comment route display on view ministerial screen</td>
-                <td>mintrack</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-
-<footer>
-    <p>Footer</p>
-</footer>
 
 <script async type="application/dart" src="main.dart"></script>
 <script async src="packages/browser/dart.js"></script>
