@@ -1,0 +1,20 @@
+<dom-module id="task-history">
+    <style>
+        :host {
+            display: block;
+        }
+    </style>
+    <template>
+        <template is="dom-if" if="[[hasHistory()]]">
+            <h2>Recent</h2>
+
+            <table class="table table-condensed">
+                <tbody>
+                <template is="dom-repeat" items="[[history]]" as="day">
+                    <recent-tasks date="[[day.date]]" count="[[day.count]]" tasks="[[day.tasks]]"></recent-tasks>
+                </template>
+                </tbody>
+            </table>
+        </template>
+    </template>
+</dom-module>

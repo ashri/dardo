@@ -1,0 +1,15 @@
+<dom-module id="task-statistics">
+    <style>
+        :host {
+            display: block;
+        }
+    </style>
+    <template>
+        <template is="dom-if" if="[[hasStatistics()]]">
+            <h2>Stats</h2>
+
+            <template is="dom-repeat" items="[[statistics]]" as="stat">
+                <task-statistic-period stat="[[stat]]"></task-statistic-period>
+            </template>
+        </template>
+</dom-module>

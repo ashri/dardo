@@ -6,12 +6,19 @@
     </style>
 
     <template>
-        <label>Type something ...</label>
-        <input is="iron-input" bind-value="{{text}}">
+        <div class="row timer">
+            <div class="col-md-8 col-md-offset-2">
+                <runnable-task running="{{running}}"></runnable-task>
+            </div>
+        </div>
 
-        <p>
-            Text: <span>{{text}}</span><br/>
-            Reversed: <span>{{reverseText(text)}}</span>
-        </p>
+        <div class="row timer">
+            <div class="col-md-6 stats">
+                <task-statistics statistics="[[statistics]]"></task-statistics>
+            </div>
+            <div class="col-md-6 history">
+                <task-history history="[[history]]"></task-history>
+            </div>
+        </div>
     </template>
 </dom-module>

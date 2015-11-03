@@ -1,5 +1,21 @@
 .timer {
 
+  .countdown {
+    text-align: center;
+    font-size: 5em;
+    font-weight: bold;
+    color: #fff;
+  }
+  .description {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #fac8c4;
+  }
+  .tags {
+    text-align: center;
+    margin-bottom: 3em;
+  }
   .controls {
     text-align: center;
   }

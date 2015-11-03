@@ -1,0 +1,66 @@
+<dom-module id="runnable-task">
+    <style>
+        :host {
+            display: block;
+        }
+    </style>
+    <template>
+        <form class="form-horizontal">
+            <template is="dom-if" if="{{running}}">
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8 countdown">{{countdown}}</div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8 description">{{description}}</div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8 tags">
+                        <template is="dom-repeat" items="[[tags]]" as="tag">
+                            <span class="label label-default">[[tag]]</span>
+                        </template>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8 controls">
+                        <button type="button" on-tap="cancelTask" class="btn btn-primary btn-lg btn-stop">
+                            <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Cancel
+                        </button>
+                    </div>
+                </div>
+            </template>
+            <template is="dom-if" if="{{!running}}">
+                <div class="form-group form-group-lg">
+                    <label for="inputTask" class="col-sm-2 control-label">Task</label>
+
+                    <div class="col-sm-10">
+                        <input value="{{description::input}}" class="form-control" id="inputTask" placeholder="Task description" required autofocus>
+
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputTags" class="col-sm-2 control-label">Tags</label>
+
+                    <div class="col-sm-5">
+                        <input value="{{inputTags::input}}" class="form-control" id="inputTags" placeholder="Tags seperated by spaces" required>
+
+                        <p class="help-block"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8 controls">
+                        <button type="button" on-tap="startTask" class="btn btn-primary btn-lg btn-start">
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Start
+                        </button>
+                        <button type="button" on-tap="startSmallRest" class="btn btn-default btn-lg btn-pause-5">
+                            <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> 5m
+                        </button>
+                        <button type="button" on-tap="startLargeRest" class="btn btn-default btn-lg btn-pause-15">
+                            <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> 15m
+                        </button>
+                    </div>
+                </div>
+            </template>
+        </form>
+    </template>
+</dom-module>

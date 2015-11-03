@@ -1,26 +1,38 @@
 @HtmlImport('main_app.html')
-library dardo.lib.main_app;
+library dardo.lib.core;
 
 import 'package:polymer/polymer.dart';
 import 'package:polymer_elements/iron_input.dart';
 import 'package:web_components/web_components.dart';
 
+import 'recent_task.dart';
+import 'recent_tasks.dart';
+import 'runnable_task.dart';
+import 'task_history.dart';
+import 'task_statistic_period.dart';
+import 'task_statistics.dart';
+
 /// Uses [IronInput]
+/// Uses [RecentTasks]
+/// Uses [RecentTask]
+/// Uses [RunnableTask]
+/// Uses [TaskHistory]
+/// Uses [TaskStatistics]
+/// Uses [TaskStatisticPeriod]
 @PolymerRegister('main-app')
 class MainApp extends PolymerElement {
+
   @property
-  String text;
+  bool running = false;
+
+  @property
+  List statistics = [];
+
+  @property
+  List history = [];
 
   /// Constructor used to create instance of MainApp.
   MainApp.created() : super.created();
-
-  @reflectable
-  String reverseText(String text) {
-    return text
-        .split('')
-        .reversed
-        .join('');
-  }
 
 // Optional lifecycle methods - uncomment if needed.
 

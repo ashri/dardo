@@ -1,0 +1,16 @@
+<dom-module id="recent-tasks">
+    <style>
+        :host {
+            display: block;
+        }
+    </style>
+    <template>
+        <tr>
+            <th colspan="2"><span class="date">[[date]]</span> <span class="badge">[[count]]</span></th>
+        </tr>
+        <template is="dom-repeat" items="[[tasks]]" as="task">
+            <recent-task description="[[task.description]]" tags="[[task.tags]]"></recent-task>
+        </template>
+    </template>
+    </template>
+</dom-module>
