@@ -4,151 +4,18 @@
     <meta charset="utf-8">
     <title>Dardo</title>
 
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300' rel='stylesheet' type='text/css'>
+    <!--<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:300' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="resources/stylesheets/dardo.css">
 </head>
 
-<body>
+<body unresolved>
 <div class="container">
 
     <header>
         <h1>Dardo</h1>
     </header>
 
-    <div class="row timer">
-        <div class="col-md-8 col-md-offset-2">
-            <form class="form-horizontal">
-                <div class="form-group form-group-lg">
-                    <label for="inputTask" class="col-sm-2 control-label">Task</label>
-
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputTask" placeholder="Task description" required autofocus>
-
-                        <p class="help-block"></p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputTags" class="col-sm-2 control-label">Tags</label>
-
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control" id="inputTags" placeholder="Tags seperated by spaces" required>
-
-                        <p class="help-block"></p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-8 controls">
-                        <button type="button" class="btn btn-primary btn-lg btn-start">
-                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Start
-                        </button>
-                        <button type="button" class="btn btn-default btn-lg btn-pause-5">
-                            <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> 5m
-                        </button>
-                        <button type="button" class="btn btn-default btn-lg btn-pause-15">
-                            <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> 15m
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="row timer">
-        <div class="col-md-6 stats">
-            <h2>Stats</h2>
-
-            <div class="row stats-day">
-                <div class="col-md-6 stats-current">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Today</h3>
-                        </div>
-                        <div class="panel-body">
-                            2
-                        </div>
-                        <div class="panel-footer">
-                            <embed src="http://www.kryogenix.org/random/sparkline.svg?4,5,7,2,5,4,6,5,6,9" width="80%" height="20">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 stats-average">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Daily Average</h3>
-                        </div>
-                        <div class="panel-body">
-                            6
-                        </div>
-                        <div class="panel-footer"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="row stats-week">
-                <div class="col-md-6 stats-current">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">This Week</h3>
-                        </div>
-                        <div class="panel-body">
-                            10
-                        </div>
-                        <div class="panel-footer">
-                            <embed src="http://www.kryogenix.org/random/sparkline.svg?4,5,7,2,5,4,6,5,6,9" width="80%" height="20">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 stats-average">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Weekly Average</h3>
-                        </div>
-                        <div class="panel-body">
-                            30
-                        </div>
-                        <div class="panel-footer"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 history">
-            <h2>Recent</h2>
-
-            <table class="table table-condensed">
-                <tbody>
-                <tr>
-                    <th colspan="2">Today <span class="badge">3</span></th>
-                </tr>
-                <tr>
-                    <td>Added Sass support</td>
-                    <td><span class="label label-default">dardo</span></td>
-                </tr>
-                <tr>
-                    <td>Blocked out interface</td>
-                    <td><span class="label label-default">dardo</span></td>
-                </tr>
-                <tr>
-                    <td>Added comments to additional route</td>
-                    <td><span class="label label-default">mintrack</span></td>
-                </tr>
-                <tr>
-                    <th colspan="2">Yesterday <span class="badge">6</span></th>
-                </tr>
-                <tr>
-                    <td>Added QA/Process to menu on active tasks</td>
-                    <td><span class="label label-default">mintrack</span></td>
-                </tr>
-                <tr>
-                    <td>Begun Dart project</td>
-                    <td><span class="label label-default">dardo</span></td>
-                </tr>
-                <tr>
-                    <td>Fixed comment route display on view ministerial screen</td>
-                    <td><span class="label label-default">mintrack</span></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <main-app></main-app>
 
     <footer>
         <p>Footer</p>
@@ -156,8 +23,187 @@
 
 </div>
 
-<script async type="application/dart" src="main.dart"></script>
-<script async src="packages/browser/dart.js"></script>
+<script id="template-app" type="text/x-handlebars">
+    <div class="row timer">
+        <div class="col-md-8 col-md-offset-2">
+            <form class="form-horizontal">
+                {{#runningTask}}
+                {{>task-running}}
+                {{/runningTask}}
+                {{^runningTask}}
+                {{>task-input}}
+                {{/runningTask}}
+            </form>
+        </div>
+    </div>
+
+    <div class="row timer">
+        <div class="col-md-6 stats">
+            {{#stats}}
+            {{>stats}}
+            {{/stats}}
+            {{^stats}}
+            <p>No statistics are currently available</p>
+            {{/stats}}
+        </div>
+        <div class="col-md-6 history">
+            {{#recentTasks}}
+            {{>history}}
+            {{/recentTasks}}
+            {{^recentTasks}}
+            <p>No recent tasks are available</p>
+            {{/recentTasks}}
+        </div>
+    </div>
+</script>
+
+<script id="template-task-input" type="text/x-handlebars">
+    <div class="form-group form-group-lg">
+        <label for="inputTask" class="col-sm-2 control-label">Task</label>
+
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputTask" placeholder="Task description" required autofocus>
+
+            <p class="help-block"></p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputTags" class="col-sm-2 control-label">Tags</label>
+
+        <div class="col-sm-5">
+            <input type="text" class="form-control" id="inputTags" placeholder="Tags seperated by spaces" required>
+
+            <p class="help-block"></p>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-8 controls">
+            <button type="button" class="btn btn-primary btn-lg btn-start">
+                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> Start
+            </button>
+            <button type="button" class="btn btn-default btn-lg btn-pause-5">
+                <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> 5m
+            </button>
+            <button type="button" class="btn btn-default btn-lg btn-pause-15">
+                <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> 15m
+            </button>
+        </div>
+    </div>
+</script>
+
+<script id="template-task-running" type="text/x-handlebars">
+    <div class="form-group form-group-lg">
+        <label for="inputTask" class="col-sm-2 control-label">Task</label>
+
+        <div class="col-sm-10">
+            <span id="countdown">20:00</span> remaining
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputTags" class="col-sm-2 control-label">Tags</label>
+
+        <div class="col-sm-5">
+            {{#tags}}
+            <span class="label label-default">{{.}}</span>
+            {{/tags}}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-8 controls">
+            <button type="button" class="btn btn-primary btn-lg btn-stop">
+                <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Cancel
+            </button>
+        </div>
+    </div>
+</script>
+
+<script id="template-stats" type="text/x-handlebars">
+    <h2>Stats</h2>
+
+    {{#today}}
+    <div class="row stats-day">
+        <div class="col-md-6 stats-current">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Today</h3>
+                </div>
+                <div class="panel-body">
+                    {{count}}
+                </div>
+                <div class="panel-footer">
+                    <embed src="http://www.kryogenix.org/random/sparkline.svg?{{sequence}}" width="80%" height="20">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 stats-average">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Daily Average</h3>
+                </div>
+                <div class="panel-body">
+                    {{average}}
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+    </div>
+    {{/today}}
+    {{#week}}
+    <div class="row stats-week">
+        <div class="col-md-6 stats-current">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">This Week</h3>
+                </div>
+                <div class="panel-body">
+                    {{count}}
+                </div>
+                <div class="panel-footer">
+                    <embed src="http://www.kryogenix.org/random/sparkline.svg?{{sequence}}" width="80%" height="20">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 stats-average">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Weekly Average</h3>
+                </div>
+                <div class="panel-body">
+                    {{average}}
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+    </div>
+    {{/week}}
+</script>
+
+<script id="template-history" type="text/x-handlebars">
+    <h2>Recent</h2>
+
+    <table class="table table-condensed">
+        <tbody>
+        {{#recentTasks}}
+        <tr>
+            <th colspan="2">{{date}} <span class="badge">{{count}}</span></th>
+        </tr>
+        {{#tasks}}
+        {{>task}}
+        {{/tasks}}
+        {{/recentTasks}}
+        </tbody>
+    </table>
+</script>
+
+<script id="template-task" type="text/x-handlebars">
+    <tr>
+        <td>{{description}}</td>
+        <td>{{#tags}}<span class="label label-default">{{.}}</span>{{/tags}}</td>
+    </tr>
+</script>
+
+<script type="application/dart" src="index.dart"></script>
+<script src="packages/browser/dart.js"></script>
 
 </body>
 </html>

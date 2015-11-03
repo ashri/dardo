@@ -1,0 +1,17 @@
+<dom-module id="main-app">
+    <style>
+        :host {
+            display: block;
+        }
+    </style>
+
+    <template>
+        <label>Type something ...</label>
+        <input is="iron-input" bind-value="{{text}}">
+
+        <p>
+            Text: <span>{{text}}</span><br/>
+            Reversed: <span>{{reverseText(text)}}</span>
+        </p>
+    </template>
+</dom-module>
