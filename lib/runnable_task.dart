@@ -2,6 +2,7 @@
 library dardo.lib.runnable;
 
 import 'dart:async';
+import 'dart:html';
 
 import 'package:polymer/polymer.dart';
 import 'package:web_components/web_components.dart' show HtmlImport;
@@ -28,6 +29,12 @@ class RunnableTask extends PolymerElement {
   String description;
 
   @property
+  String descriptionHelp;
+
+  @property
+  String descriptionClassName;
+
+  @property
   List<String> tags;
 
   @property
@@ -36,6 +43,9 @@ class RunnableTask extends PolymerElement {
   Stopwatch timing = new Stopwatch();
 
   Timer timer;
+
+  AudioElement taskCompleteSound;
+  AudioElement restCompleteSound;
 
   RunnableTask.created() : super.created();
 
@@ -51,18 +61,23 @@ class RunnableTask extends PolymerElement {
   @reflectable
   void startTask([_, __]) {
     print('$runtimeType::startTask()');
-    start(false, new Duration(minutes: 20), inputTags.toLowerCase().split(' '));
+    if (validToStart()) {
+      List<String> t = inputTags != null ? inputTags.toLowerCase().split(' ') : [];
+      start(false, new Duration(minutes: 20), t);
+    }
   }
 
   @reflectable
   void startSmallRest([_, __]) {
     print('$runtimeType::startSmallRest()');
+    set('description', 'Resting ...');
     start(true, new Duration(minutes: 5), []);
   }
 
   @reflectable
   void startLargeRest([_, __]) {
     print('$runtimeType::startLargeRest()');
+    set('description', 'Resting ...');
     start(true, new Duration(minutes: 15), []);
   }
 
@@ -74,6 +89,19 @@ class RunnableTask extends PolymerElement {
     set('tags', tags);
     timing.start();
     timer = new Timer.periodic(new Duration(seconds: 1), tick);
+  }
+
+  bool validToStart() {
+    if (description == null || description.isEmpty) {
+      set('descriptionHelp', 'A task description is required');
+      set('descriptionError', true);
+      set('descriptionClassName', 'has-error');
+      return false;
+    }
+    set('descriptionHelp', null);
+    set('descriptionClassName', null);
+    set('descriptionError', false);
+    return true;
   }
 
   @reflectable
@@ -89,10 +117,50 @@ class RunnableTask extends PolymerElement {
   void tick(Timer t) {
     print('$runtimeType::tick()');
     set('timePassed', timing.elapsed);
+    if (timing.elapsed >= timeRequired) {
+      complete();
+    }
+  }
+
+  void complete() {
+    print('$runtimeType::complete()');
+    playAlert();
+
+    bool wasRest = resting;
+    if (!wasRest) {
+      print('$runtimeType::complete(): Completing task');
+      Map data = {
+        'description': this.description,
+        'tags': this.tags
+      };
+      fire('complete', detail: data);
+    }
+
+    cancelTask();
+    set('description', null);
+    set('tagsInput', null);
+    set('tags', []);
+
+    if (!wasRest) {
+      startSmallRest();
+    }
+  }
+
+  void playAlert() {
+    print('$runtimeType::playAlert()');
+    if (resting) {
+      this.restCompleteSound.play();
+    } else {
+      this.taskCompleteSound.play();
+    }
   }
 
   @reflectable
   void ready() {
     print('$runtimeType::ready()');
+    this.taskCompleteSound = new AudioElement('resources/audio/task-complete.wav')
+      ..load();
+    this.restCompleteSound = new AudioElement('resources/audio/rest-complete.wav')
+      ..load();
   }
 }

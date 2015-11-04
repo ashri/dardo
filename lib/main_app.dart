@@ -1,6 +1,8 @@
 @HtmlImport('main_app.html')
 library dardo.lib.core;
 
+import 'dart:html';
+
 import 'package:polymer/polymer.dart';
 import 'package:polymer_elements/iron_input.dart';
 import 'package:web_components/web_components.dart';
@@ -51,6 +53,11 @@ class MainApp extends PolymerElement {
 //  attributeChanged(String name, String oldValue, String newValue) {
 //    super.attributeChanged(name, oldValue, newValue);
 //  }
+
+  @reflectable
+  void complete(Event e, var detail) {
+    print('$runtimeType::complete(): Received ${detail['description']}');
+  }
 
 //  /// Called when main-app has been fully prepared (Shadow DOM created,
 //  /// property observers set up, event listeners attached).
