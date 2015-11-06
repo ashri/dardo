@@ -10,7 +10,7 @@ import 'package:web_components/web_components.dart' show HtmlImport;
 @PolymerRegister('runnable-task')
 class RunnableTask extends PolymerElement {
 
-  @property
+  @Property(notify: true)
   bool running;
 
   @property
@@ -40,12 +40,12 @@ class RunnableTask extends PolymerElement {
   @property
   String inputTags;
 
-  Stopwatch timing = new Stopwatch();
+  Stopwatch _timing = new Stopwatch();
 
-  Timer timer;
+  Timer _timer;
 
-  AudioElement taskCompleteSound;
-  AudioElement restCompleteSound;
+  AudioElement _taskCompleteSound;
+  AudioElement _restCompleteSound;
 
   RunnableTask.created() : super.created();
 
@@ -63,7 +63,7 @@ class RunnableTask extends PolymerElement {
     print('$runtimeType::startTask()');
     if (validToStart()) {
       List<String> t = inputTags != null ? inputTags.toLowerCase().split(' ') : [];
-      start(false, new Duration(minutes: 20), t);
+      start(false, new Duration(seconds: 2), t);
     }
   }
 
@@ -87,8 +87,8 @@ class RunnableTask extends PolymerElement {
     set('timeRequired', timeRequired);
     set('timePassed', new Duration(minutes: 0));
     set('tags', tags);
-    timing.start();
-    timer = new Timer.periodic(new Duration(seconds: 1), tick);
+    _timing.start();
+    _timer = new Timer.periodic(new Duration(seconds: 1), tick);
   }
 
   bool validToStart() {
@@ -109,15 +109,18 @@ class RunnableTask extends PolymerElement {
     print('$runtimeType::cancelTask()');
     set('running', false);
     set('resting', false);
-    timer.cancel();
-    timing.stop();
-    timing.reset();
+    if (description.startsWith('Resting')) {
+      set('description', null);
+    }
+    _timer.cancel();
+    _timing.stop();
+    _timing.reset();
   }
 
   void tick(Timer t) {
     print('$runtimeType::tick()');
-    set('timePassed', timing.elapsed);
-    if (timing.elapsed >= timeRequired) {
+    set('timePassed', _timing.elapsed);
+    if (_timing.elapsed >= timeRequired) {
       complete();
     }
   }
@@ -149,18 +152,20 @@ class RunnableTask extends PolymerElement {
   void playAlert() {
     print('$runtimeType::playAlert()');
     if (resting) {
-      this.restCompleteSound.play();
+      this._restCompleteSound.currentTime = 0;
+      this._restCompleteSound.play();
     } else {
-      this.taskCompleteSound.play();
+      this._taskCompleteSound.currentTime = 0;
+      this._taskCompleteSound.play();
     }
   }
 
   @reflectable
   void ready() {
     print('$runtimeType::ready()');
-    this.taskCompleteSound = new AudioElement('resources/audio/task-complete.wav')
+    this._taskCompleteSound = new AudioElement('resources/audio/task-complete.wav')
       ..load();
-    this.restCompleteSound = new AudioElement('resources/audio/rest-complete.wav')
+    this._restCompleteSound = new AudioElement('resources/audio/rest-complete.wav')
       ..load();
   }
 }

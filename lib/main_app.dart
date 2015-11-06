@@ -7,16 +7,13 @@ import 'package:polymer/polymer.dart';
 import 'package:polymer_elements/iron_input.dart';
 import 'package:web_components/web_components.dart';
 
-import 'recent_task.dart';
-import 'recent_tasks.dart';
+import 'dardo.dart';
 import 'runnable_task.dart';
 import 'task_history.dart';
 import 'task_statistic_period.dart';
 import 'task_statistics.dart';
 
 /// Uses [IronInput]
-/// Uses [RecentTasks]
-/// Uses [RecentTask]
 /// Uses [RunnableTask]
 /// Uses [TaskHistory]
 /// Uses [TaskStatistics]
@@ -31,7 +28,7 @@ class MainApp extends PolymerElement {
   List statistics = [];
 
   @property
-  List history = [];
+  List<Task> history = [];
 
   /// Constructor used to create instance of MainApp.
   MainApp.created() : super.created();
@@ -57,6 +54,7 @@ class MainApp extends PolymerElement {
   @reflectable
   void complete(Event e, var detail) {
     print('$runtimeType::complete(): Received ${detail['description']}');
+    add('history', new Task(new DateTime.now(), detail['description'], detail['tags']));
   }
 
 //  /// Called when main-app has been fully prepared (Shadow DOM created,

@@ -3,18 +3,42 @@
         :host {
             display: block;
         }
+
+        .table {
+            display: table;
+        }
+
+        .row {
+            display: table-row;
+        }
+
+        .cell {
+            display: table-cell;
+        }
     </style>
     <template>
-        <template is="dom-if" if="[[hasHistory()]]">
-            <h2>Recent</h2>
+        <h2>Recent</h2>
 
-            <table class="table table-condensed">
-                <tbody>
-                <template is="dom-repeat" items="[[history]]" as="day">
-                    <recent-tasks date="[[day.date]]" count="[[day.count]]" tasks="[[day.tasks]]"></recent-tasks>
-                </template>
-                </tbody>
-            </table>
-        </template>
+        <div class="table">
+            <template is="dom-repeat" items="{{history}}" as="task">
+                <div class="row">
+                    <div class="cell">{{task.description}}</div>
+                    <div class="cell">
+                        <template is="dom-repeat" items="{{task.tags}}" as="tag">
+                            <span class="label label-default">{{tag}}</span>
+                        </template>
+                    </div>
+                    <div class="cell">{{formatDate(task.timestamp)}}</div>
+                </div>
+            </template>
+        </div>
+
+        <table class="table table-condensed">
+            <tbody>
+            <tr>
+
+            </tr>
+            </tbody>
+        </table>
     </template>
 </dom-module>
