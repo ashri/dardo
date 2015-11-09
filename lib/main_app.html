@@ -13,12 +13,16 @@
         </div>
 
         <div class="row timer">
+            <!--<template is="dom-if" if="{{hasStatistics()}}">-->
             <div class="col-md-6 stats">
                 <task-statistics statistics="[[statistics]]"></task-statistics>
             </div>
+            <!--</template>-->
+            <!--<template is="dom-if" if="{{hasHistory()}}">-->
             <div class="col-md-6 history">
                 <task-history history="[[history]]"></task-history>
             </div>
+            <!--</template>-->
         </div>
 
     </template>

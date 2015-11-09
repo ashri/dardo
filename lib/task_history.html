@@ -3,42 +3,20 @@
         :host {
             display: block;
         }
-
-        .table {
-            display: table;
-        }
-
-        .row {
-            display: table-row;
-        }
-
-        .cell {
-            display: table-cell;
-        }
     </style>
     <template>
         <h2>Recent</h2>
 
-        <div class="table">
-            <template is="dom-repeat" items="{{history}}" as="task">
-                <div class="row">
-                    <div class="cell">{{task.description}}</div>
-                    <div class="cell">
-                        <template is="dom-repeat" items="{{task.tags}}" as="tag">
-                            <span class="label label-default">{{tag}}</span>
-                        </template>
-                    </div>
-                    <div class="cell">{{formatDate(task.timestamp)}}</div>
+        <template is="dom-repeat" items="{{history}}" as="task">
+            <div class="row">
+                <div class="col-md-6">{{task.description}}</div>
+                <div class="col-md-2">
+                    <template is="dom-repeat" items="{{task.tags}}" as="tag">
+                        <span class="label label-default">{{tag}}</span>
+                    </template>
                 </div>
-            </template>
-        </div>
-
-        <table class="table table-condensed">
-            <tbody>
-            <tr>
-
-            </tr>
-            </tbody>
-        </table>
+                <div class="col-md-4">{{formatDate(task.timestamp)}}</div>
+            </div>
+        </template>
     </template>
 </dom-module>
