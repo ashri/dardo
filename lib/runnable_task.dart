@@ -111,6 +111,7 @@ class RunnableTask extends PolymerElement {
     set('resting', false);
     if (description.startsWith('Resting')) {
       set('description', null);
+      set('inputTags', null);
     }
     _timer.cancel();
     _timing.stop();
@@ -141,7 +142,7 @@ class RunnableTask extends PolymerElement {
 
     cancelTask();
     set('description', null);
-    set('tagsInput', null);
+    set('inputTags', null);
     set('tags', []);
 
     if (!wasRest) {

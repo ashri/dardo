@@ -1,19 +1,16 @@
 @HtmlImport('main_app.html')
 library dardo.lib.core;
 
+import 'dart:convert';
 import 'dart:html';
 
-
+import 'package:dardo/dardo.dart';
+import 'package:dardo/runnable_task.dart';
+import 'package:dardo/task_history.dart';
+import 'package:dardo/task_statistics.dart';
 import 'package:polymer/polymer.dart';
-import 'package:polymer_elements/iron_input.dart';
 import 'package:web_components/web_components.dart';
 
-import 'dardo.dart';
-import 'runnable_task.dart';
-import 'task_history.dart';
-import 'task_statistics.dart';
-
-/// Uses [IronInput]
 /// Uses [RunnableTask]
 /// Uses [TaskHistory]
 /// Uses [TaskStatistics]
@@ -31,6 +28,8 @@ class MainApp extends PolymerElement {
 
   @property
   bool hasHistory = false;
+
+  bool appReady = false;
 
   /// Constructor used to create instance of MainApp.
   MainApp.created() : super.created();
@@ -62,6 +61,18 @@ class MainApp extends PolymerElement {
   @Observe('history.*')
   void historyChanged(Map changeRecord) {
     print('$runtimeType::historyChanged()');
+    if (!appReady) {
+      return;
+    }
+    updateStats();
+    saveData();
+  }
+
+  void updateStats() {
+    if (!appReady) {
+      return;
+    }
+    print('$runtimeType::updateStats()');
     List<Statistic> newStats = calculateStatistics();
     set('statistics', newStats);
   }
@@ -88,5 +99,42 @@ class MainApp extends PolymerElement {
 //  /// property observers set up, event listeners attached).
   ready() {
     print('$runtimeType::ready()');
+    loadData();
+    appReady = true;
+    updateStats();
+  }
+
+  void loadData() {
+    print('$runtimeType::loadData()');
+    var json = window.localStorage['data'];
+    if (json == null || json.isEmpty) {
+      return;
+    }
+    var data = JSON.decode(json);
+    List<Map> tasks = data['history'];
+    List<Task> history = [];
+    tasks.forEach((Map t) {
+      DateTime timestamp = new DateTime.fromMillisecondsSinceEpoch(t['timestamp']);
+      Task task = new Task(timestamp, t['description'], t['tags']);
+      history.add(task);
+    });
+    set('history', history);
+  }
+
+  void saveData() {
+    print('$runtimeType::saveData()');
+    List<Map> tasks = [];
+    history.forEach((t) {
+      tasks.add({
+        'timestamp': t.timestamp.millisecondsSinceEpoch,
+        'description': t.description,
+        'tags': t.tags
+      });
+    });
+    Map data = {
+      'history': tasks
+    };
+    var json = JSON.encode(data);
+    window.localStorage['data'] = json;
   }
 }
