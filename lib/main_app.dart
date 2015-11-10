@@ -78,21 +78,45 @@ class MainApp extends PolymerElement {
   }
 
   List<Statistic> calculateStatistics() {
-    DateTime now = new DateTime.now();
+    List<Statistic> stats = [];
+
     // Sequence is group by day and total counts
+    Map<String, int> groupByDay = {};
+    this.history.forEach((task) {
+      var ts = task.timestamp;
+      var day = formatDate(ts);
+      groupByDay.putIfAbsent(day, () => 0);
+      int total = groupByDay[day];
+      groupByDay[day] = total + 1;
+    });
+
+    List<String> days = groupByDay.keys.toList(growable: false);
+    days.sort((s1, s2) => s1.compareTo(s2));
+
+    String today = formatDate(new DateTime.now());
+    groupByDay.putIfAbsent(today, () => 0);
 
     // Today count is number by today
+    List<int> daySequence = [];
+    days.forEach((s) => daySequence.add(groupByDay[s]));
 
-    // Average is group by date and average counts
+    int todayCount = 0;
+    double average = 0.0;
 
-    // Weekly count is group by last 7 days and count
+    if (daySequence.isNotEmpty) {
+      todayCount = daySequence.isNotEmpty ? daySequence.last : 0;
+      average = daySequence.fold(0, (v, i) => v + i) / daySequence.length;
+    }
+
+    stats.add(new Statistic('Today', todayCount, daySequence, 'Daily', average));
 
     // Weekly average is group by 7 day slots and average
-
-    List<Statistic> stats = [];
-    stats.add(new Statistic('Today', 3, [3, 4, 3, 2, 4, 4, 2], 'Daily Average', 6.4));
-    stats.add(new Statistic('This Week', 14, [33, 34, 55, 2, 12, 23], 'Weekly Average', 33.1));
+    //stats.add(new Statistic('This Week', 14, [33, 34, 55, 2, 12, 23], 'Weekly Average', 33.1));
     return stats;
+  }
+
+  String formatDate(DateTime ts) {
+    return "${ts.year.toString()}/${ts.month.toString().padLeft(2, '0')}/${ts.day.toString().padLeft(2, '0')}";
   }
 
 //  /// Called when main-app has been fully prepared (Shadow DOM created,
