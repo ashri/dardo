@@ -63,7 +63,7 @@ class RunnableTask extends PolymerElement {
     print('$runtimeType::startTask()');
     if (validToStart()) {
       List<String> t = inputTags != null ? inputTags.toLowerCase().split(' ') : [];
-      start(false, new Duration(seconds: 2), t);
+      start(false, new Duration(minutes: 25), t);
     }
   }
 
