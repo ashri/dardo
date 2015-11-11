@@ -43,6 +43,15 @@ pub build --mode=release
 
 Then deploy it to a web server.
 
+## License
+
+Dardo is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+
+## Copyright
+
+Copyright (c) 2015 Ashley Richardson.
+
+
 [pomodoro]: https://en.wikipedia.org/wiki/Pomodoro_Technique
 [dart]: https://www.dartlang.org
 [polymer]: https://github.com/dart-lang/polymer-dart
