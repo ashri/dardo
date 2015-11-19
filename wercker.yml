@@ -1,9 +1,18 @@
 box: google/dart
 build:
   steps:
-    # A step that executes `npm install` command
-    - pub get
-    - pub build --mode=release
+    - script:
+      name: echo Dart information
+      code: |
+        echo "dart version $(dart --version) running"
+    - script:
+      name: Install dependencies
+      code: |
+        pub get
+    - script:
+      name: Install dependencies
+      code: |
+        pub build --mode=release
 deploy:
   steps:
     - s3sync:
