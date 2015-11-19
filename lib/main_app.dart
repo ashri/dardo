@@ -108,7 +108,7 @@ class MainApp extends PolymerElement {
       average = daySequence.fold(0, (v, i) => v + i) / daySequence.length;
     }
 
-    stats.add(new Statistic('Today', todayCount, daySequence, 'Daily', average));
+    stats.add(new Statistic('Today', todayCount, daySequence, 'Daily', average.toStringAsFixed(1)));
 
     // Weekly average is group by 7 day slots and average
     //stats.add(new Statistic('This Week', 14, [33, 34, 55, 2, 12, 23], 'Weekly Average', 33.1));

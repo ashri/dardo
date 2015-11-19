@@ -15,7 +15,7 @@ class Statistic extends JsProxy {
   @reflectable int count;
   @reflectable List<int> sequence;
   @reflectable String averageLabel;
-  @reflectable double average;
+  @reflectable String average;
 
   Statistic(this.label, this.count, this.sequence, this.averageLabel, this.average);
 
