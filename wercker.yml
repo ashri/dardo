@@ -1,0 +1,14 @@
+box: google/dart
+build:
+  steps:
+    # A step that executes `npm install` command
+    - pub get
+    - pub build --mode=release
+deploy:
+  steps:
+    - s3sync:
+        key_id: $KEY
+        key_secret: $SECRET
+        bucket_url: $URL
+        source_dir: build/web
+
